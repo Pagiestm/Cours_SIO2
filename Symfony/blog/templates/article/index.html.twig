@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+<style>
+    table {
+        border: medium solid black;
+        border-collapse: collapse;
+        width: 50%;
+        margin-left: 350px;
+        }
+        th {
+        font-family: monospace;
+        border: thin solid white;
+        width: 50%;
+        padding: 5px;
+        background-color: black;
+        color: white;
+        background-image: url(sky.jpg);
+        }
+        td {
+        font-family: sans-serif;
+        border: thin solid black;
+        width: 50%;
+        padding: 5px;
+        text-align: center;
+        background-color: #ffffff;
+        }
+        a#ajouter {
+            background-color: black;
+            color: white;
+            padding: 14px 20px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            }
+        a#ajouter:hover {
+            background-color: #292929;
+        }
+        .ajouter{
+            margin-bottom: 50px;
+            margin-top: 50px;
+            text-align: center;
+        }
+</style>
+
+
+
+    <h1> Voici la liste des articles disponibles ! ✅</h1>
+
+    {{ dump (articles) }}
+
+    <div class="ajouter">
+    <a id="ajouter" href="{{ path('app_articleAdd')}}">Ajouter un Article</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>titre</th>
+                <th>contenu</th>
+                <th>date de création</th>
+                <th>En savoir plus</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.titre }}</td>
+                <td>{{ article.contenu }}</td>
+                <td>{{ article.datecreation|date("d-m-Y H:i:s") }}</td>
+                <td><a href="{{ path('app_idarticle', {'id' : article.id})}}">Lire l'article</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

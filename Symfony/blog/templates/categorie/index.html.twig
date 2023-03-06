@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategorieController!{% endblock %}
+
+{% block body %}
+<style>
+    table {
+        margin-top: 100px;
+        border: medium solid black;
+        border-collapse: collapse;
+        width: 50%;
+        margin-left: 375px;
+    }
+    .container {
+        display: flex;
+        padding: 50px;
+        width: 300px;
+        margin-left: 550px;
+        align-items: center;
+        justify-content: center;
+    }
+    th {
+        font-family: monospace;
+        border: thin solid white;
+        width: 50%;
+        padding: 5px;
+        background-color: black;
+        color: white;
+        background-image: url(sky.jpg);
+    }
+    td {
+        font-family: sans-serif;
+        border: thin solid black;
+        width: 50%;
+        padding: 5px;
+        text-align: center;
+        background-color: #ffffff;
+    }
+    .success-msg {
+        margin-left: 500px;
+        color: #270;
+        width: 300px;
+        background-color: #DFF2BF;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 3px 3px 3px 3px;
+    }
+    .error-msg {
+        margin-left: 500px;
+        width: 300px;
+        color: #D8000C;
+        background-color: #FFBABA;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 3px 3px 3px 3px;
+    }
+    a#ajouter {
+        background-color: black;
+        color: white;
+        padding: 14px 20px;
+        margin: 20px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        }
+    a#ajouter:hover {
+        background-color: #292929;
+    }
+    .ajouter{
+        margin-bottom: 50px;
+        margin-top: 50px;
+        text-align: center;
+    }
+</style>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Categories Disponibles :</th>
+                <th>Articles correspondant à la catégorie demandée</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for categorie in categories %}
+    <tr>
+        <td>{{ categorie.libelle }}</td>
+        <td><a href="{{ path('app_idcategorie', {'id' : categorie.id})}}">Cliquez ici</a></td>
+        <td><a href="{{ path('app_categorieDelete', { id: categorie.id }) }}">Supprimer</a></td>
+    </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+
+<div class="ajouter">
+<a id="ajouter" href="{{ path('app_categorieAdd')}}">Ajouter une catégorie</a>
+</div>
+
+<div class="container">
+{% for message in app.flashes('sucess') %}
+<div class="success-msg">
+  {{ message }}
+</div>
+{% endfor %} 
+{% for message in app.flashes('error') %}
+<div class="error-msg">
+  {{ message }}
+</div>
+{% endfor %} 
+</div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategorieController!{% endblock %}
+
+{% block body %}
+<style>
+    h1{
+        text-align: center;
+        text-decoration: underline;
+        text-shadow: black 0.1em 0.1em 0.2em;
+    }
+    h4{
+        text-align: center;
+        text-decoration: underline;
+    }
+    p{
+        text-align: center;
+    }
+    .container{
+        width: 300px;
+        margin-left: 607px;
+        margin-top: 0.5em;
+        border:2px solid black;
+        padding:3px;
+        background-color: #edf2f4;
+    }
+    .retour {
+        text-decoration: none;
+        margin-left: 745px;
+    }
+</style>
+
+<h1>{{ categorie.libelle }}</h1>
+
+
+    {% for article in categorie.articles %}
+        <div class="container">
+            <h4>{{ article.titre }}</h4>
+            <p>{{ article.contenu() }}</p>
+            <p>{{ article.datecreation()|date("d-m-Y H:i:s") }}</p>
+        </div>
+    {% else %}
+            <p>Il n'y a aucun article dans cette catégorie</p>
+    {% endfor %}
+
+    <a class="retour" href="{{ path('app_categories')}}">Retour</a>
+
+{% endblock %}

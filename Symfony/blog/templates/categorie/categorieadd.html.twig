@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategorieController!{% endblock %}
+
+{% block body %}
+
+<style> 
+    h1 {
+        text-align: center;
+    }
+    .container {
+      display: flex;
+      padding: 50px;
+      width: 300px;
+      margin-left: 550px;
+      margin-bottom: 50px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #999;
+      font-size: 18px;
+      color: black;
+      background-color: #eee;
+      border-radius: 5px;
+      box-shadow: 4px 4px #ccc;
+    }
+    form input {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    form button {
+      background-color: black;
+      color: white;
+      padding: 14px 20px;
+      margin: 20px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      }
+    form button:hover {
+        background-color: #292929;
+      }
+      a#retour {
+        background-color: black;
+        color: white;
+        padding: 14px 20px;
+        margin: 20px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        }
+    a#retour:hover {
+        background-color: #292929;
+    }
+    .retour{
+        margin-bottom: 50px;
+        margin-top: 50px;
+        text-align: center;
+    }
+</style>
+
+<h1> Ajout d'une categorie </h1>
+
+<div class="container">
+{{ form(form) }}
+</div>
+
+<div class="retour">
+<a id="retour" href="{{ path('app_categories')}}">Retour</a>
+</div>
+
+{% endblock %}
